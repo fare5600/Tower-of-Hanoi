@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+
+public class Driver 
+{
+	
+	public static void main(String[] args)
+	{
+		Tower[] theTowers = {new Tower(), new Tower(), new Tower()};
+		theTowers[0].addDisc(new Disc(3));
+		theTowers[0].addDisc(new Disc(2));
+		theTowers[0].addDisc(new Disc(1));
+		Scanner input = new Scanner(System.in);
+		while(true)
+		{
+			Driver.show(theTowers); 
+			System.out.println(" From Tower: ");
+			int source = input.nextInt();
+			System.out.println(" To Tower: ");
+			int dest = input.nextInt();
+			Disc discToMove = theTowers[source].removeDisc();
+			if(!theTowers[dest].addDisc(discToMove))
+			{
+				theTowers[source].addDisc(discToMove);
+				System.out.println("retry");
+			}
+		}
+		
+	}
+	static void show(Tower[] theTowers)
+	{
+		for(int i = 0; i < theTowers.length; i++)
+		{
+			System.out.println("Tower index: " + i);
+			theTowers[i].display();
+			System.out.println("");
+		}
+		
+	}
+	}
